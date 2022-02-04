@@ -1,7 +1,7 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, View, Text, Image, useWindowDimensions } from 'react-native';
+import { ColorSchemeName, View, Text, Image, useWindowDimensions, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -10,6 +10,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import HomeScreen from '../screens/HomeScreen';
+import UsersScreen from '../screens/UsersScreen';
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -42,6 +43,13 @@ function RootNavigator() {
           headerBackTitleVisible: false,
         }} 
       />
+      <Stack.Screen 
+        name="UsersScreen" 
+        component={UsersScreen}         
+        options={{ 
+          title: "Users",
+        }} 
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
@@ -49,6 +57,7 @@ function RootNavigator() {
 
 const HomeHeader = (props) => {
   const { width } = useWindowDimensions();
+  const navigation = useNavigation()
 
   return (
     <View style={{ 
@@ -64,7 +73,9 @@ const HomeHeader = (props) => {
       />
       <Text style={{flex: 1, textAlign: 'center', marginLeft: 50, fontWeight: 'bold'}}>Signal</Text>
       <Feather name="camera" size={24} color="black" style={{ marginHorizontal: 10}} />
-      <Feather name="edit-2" size={24} color="black" style={{ marginHorizontal: 10}} />
+      <Pressable onPress={() => navigation.navigate('UsersScreen')}>
+        <Feather name="edit-2" size={24} color="black" style={{ marginHorizontal: 10}} />
+      </Pressable>  
     </View>
   )
 };
@@ -88,7 +99,7 @@ const ChatRoomHeader = (props) => {
       />
       <Text style={{flex: 1, marginLeft: 10, fontWeight: 'bold'}}>{props.children}</Text>
       <Feather name="camera" size={24} color="black" style={{ marginHorizontal: 10}} />
-      <Feather name="edit-2" size={24} color="black" style={{ marginHorizontal: 10}} />
+        <Feather name="edit-2" size={24} color="black" style={{ marginHorizontal: 10}} />
     </View>
   )
 }
