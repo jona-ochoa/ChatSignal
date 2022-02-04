@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "SignalClone2",
+  "functionName": "SignalClone2PostConfirmation",
+  "resourceName": "SignalClone2PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\Users\\54352\\AppData\\Roaming\\nvm\\v16.13.1\\node_modules\\@aws-amplify\\cli\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "SignalClone2PostConfirmation",
+  "skipEdit": true,
+  "enableCors": false
+}
